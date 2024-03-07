@@ -1,0 +1,61 @@
+package templates
+
+const (
+    DEFAULT_TITLE = "peekabo - website screenshot comparison"
+    DEFAULT_DESCRIPTION = "peekabo, a screenshot comparison tool for your websites."
+)
+
+type MetaSettings struct {
+    Title string
+    Description string
+}
+
+func (metaSettings MetaSettings) GetTitle() string {
+    if(metaSettings.Title == "") {
+        return DEFAULT_TITLE
+    } else {
+        return metaSettings.Title
+    }
+}
+
+func (metaSettings MetaSettings) GetDescription() string {
+    if(metaSettings.Description == "") {
+        return "peekabo, a screenshot comparison tool for your websites."
+    } else {
+        return DEFAULT_DESCRIPTION
+    }
+}
+
+templ Layout(metaSettings *MetaSettings) {
+    <html>
+        <head>
+            if metaSettings == nil {
+                <title>{DEFAULT_TITLE}</title>
+                <meta name="description" content={DEFAULT_DESCRIPTION} />
+            } else {
+                <title>{ metaSettings.GetTitle() }</title>
+                <meta name="description" content={ metaSettings.GetDescription() } />
+            }
+        </head>
+        <body>
+            <nav>
+                @Nav()
+            </nav>
+            
+            <main>
+                { children... }
+            </main>
+            
+            <footer>
+                @Footer()
+            </footer>
+        </body>
+    </html>
+}
+
+templ Nav() {
+
+}
+
+templ Footer() {
+}

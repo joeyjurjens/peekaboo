@@ -13,3 +13,13 @@
 
 # Go workspace file
 go.work
+
+# templ generated go files
+pkg/templates/**/*.go
+
+# db
+*.sqlite3
+
+# env
+.env
+.envrc
